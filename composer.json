@@ -1,0 +1,16 @@
+{
+    "name": "scratch",
+    "type": "scratch project",
+    "require": {
+        "phpunit/phpunit": "^6.4",
+        "squizlabs/php_codesniffer": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phploc/phploc": "^4.0"
+    }
+}
