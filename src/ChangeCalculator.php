@@ -54,35 +54,12 @@ class ChangeCalculator
     /**
      * Calculates the list of coins to return for the change amount.
      *
-     * This is how _I_ would do it.
-     *
      * @return array
      */
     public function calculate()
     {
         // Do the math
         $this->performCalculation();
-
-        // List of coins used
-        return $this->coins_due;
-    }
-
-    /**
-     * Calculates the list of coins to return for the change amount.
-     *
-     * This version relies on recursion.
-     *
-     * It's a bit like magic so I'd avoid doing this in production code.
-     *
-     * Note: only one - calculate() OR calculateUsingRecursion() - would exist.
-     * I've included both here for academic purposes only.
-     *
-     * @return array
-     */
-    public function calculateUsingRecursion()
-    {
-        // Do the math with recursion
-        $this->performCalculationUsingRecursion();
 
         // List of coins used
         return $this->coins_due;
@@ -184,60 +161,5 @@ class ChangeCalculator
     private function isCalculationCompleted()
     {
         return ($this->change_amount === 0);
-    }
-
-    /**
-     * Iterate over each coin, taking it off the change amount until we have
-     * a list of all the coins needed.
-     *
-     * @return void
-     */
-    private function performCalculationUsingRecursion()
-    {
-        foreach (self::COINS as $coin) {
-            if (! $this->keepDeductingCoinRecursivelyWhileChangeAmountExists($coin)) {
-                break;
-            }
-        }
-    }
-
-    /**
-     * Check there is a change amount remaining. If there is, use recursion
-     * to deduct the coin as many times as possible.
-     * If there is no change amount remaining, we can stop the calculations.
-     *
-     * @param int $coin
-     *
-     * @return bool
-     */
-    private function keepDeductingCoinRecursivelyWhileChangeAmountExists(int $coin)
-    {
-        if ($this->isCalculationCompleted()) {
-            return false;
-        }
-
-        $this->deductCoinWithRecursion($coin);
-
-        return true;
-    }
-
-    /**
-     * Take the coin value away from the change amount.
-     *
-     * This method uses recursion.
-     *
-     * @param int $coin
-     *
-     * @return void
-     */
-    private function deductCoinWithRecursion(int $coin)
-    {
-        if ($coin > $this->change_amount) {
-            return;
-        }
-
-        $this->deductCoinFromChangeAndStoreUsage($coin);
-
-        $this->deductCoinWithRecursion($coin);  // it's calling itself
     }
 }

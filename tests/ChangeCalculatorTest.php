@@ -104,18 +104,6 @@ class ChangeCalculatorTest extends TestCase
     }
 
     /**
-     * Test recursive with a range of valid integer amounts.
-     * @dataProvider changeAmountsToCoins
-     */
-    public function testCalculateUsingRecursionWithValidIntegers($change_amount, $coins_array)
-    {
-        /** @var int $change_calculator */
-        $change_calculator = new ChangeCalculator($change_amount);
-
-        $this->assertSame($change_calculator->calculateUsingRecursion(), $coins_array);
-    }
-
-    /**
      * Test data for valid integer amounts.
      */
     public static function changeAmountsToCoins()
