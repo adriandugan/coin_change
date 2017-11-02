@@ -1,10 +1,8 @@
 # coin_change
 
-ShopKeep technical test
+Return a list containing the _fewest_ coins for the amount of change needed.
 
-Find the fewest coins for the amount of change needed.
-
-**Requires PHP 7.0 or higher**
+**Requires PHP 7.0 or higher** (because I use strict type hinting).
 
 ## Notes
 
